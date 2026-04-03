@@ -2,6 +2,8 @@
 
 This document explains how Stripe Connect is implemented in the system, covering the complete payment flow between User, Host, and Admin.
 
+This is the draft right now for the ongoing development, and there is a significant number of improvements needed in the code
+
 ## Roles
 
 * **User**: Makes payments for bookings
