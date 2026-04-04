@@ -41,8 +41,8 @@ const onboarding = async (userData) => {
 
   const accountLinkData = {
     account: account.id,
-    refresh_url: `http://${config.base_url}:${config.port}/payment/reauth`,
-    return_url: `http://${config.base_url}:${config.port}/payment/return?connectedAccountId=${account.id}&hostId=${userData.userId}`,
+    refresh_url: `https://${config.base_url}:${config.port}/payment/reauth`,
+    return_url: `https://${config.base_url}:${config.port}/payment/return?connectedAccountId=${account.id}&hostId=${userData.userId}`,
     type: "account_onboarding",
   };
   const accountLink = await stripe.accountLinks.create(accountLinkData);
@@ -127,10 +127,8 @@ const createCheckoutForBooking = async (userData, payload) => {
   const sessionData = {
     payment_method_types: ["card"],
     mode: "payment",
-    // success_url: `http://${config.base_url}:${config.port}/payment/success`,
-    // cancel_url: `http://${config.base_url}:${config.port}/payment/cancel`,
-    success_url: `https://api.mytrackss.com/payment/success`,
-    cancel_url: `https://api.mytrackss.com/payment/cancel`,
+    success_url: `http://${config.base_url}:${config.port}/payment/success`,
+    cancel_url: `http://${config.base_url}:${config.port}/payment/cancel`,
     line_items: [
       {
         price_data: {
@@ -316,8 +314,7 @@ const savePayoutInfo = async (query) => {
 
 const getBankAccountDetails = async (connectedAccountId) => {
   const bankAccounts = await stripe.accounts.listExternalAccounts(
-    // connectedAccountId,
-    "acct_1QiU2yBG91GJM2ry",
+    connectedAccountId,
     {
       object: "bank_account",
     }
